@@ -1,4 +1,5 @@
 import ObserverPage from "./pages/observer";
+import VuexPage from "./pages/vuex";
 import WebComponentPage from "./pages/web-component";
 import Component from "./utils/component";
 
@@ -15,6 +16,7 @@ class App extends Component {
       <div id="url">${page}</div>
       <button id="webComponent">웹 컴포넌트 만들기</button>
       <button id="observer">옵져버 상태관리 시스템 만들기</button>
+      <button id="vuex">Flux 상태관리 시스템 만들기 (Vuex)</button>
       <div id="container"></div>
     `;
   }
@@ -26,6 +28,7 @@ class App extends Component {
 
     if (page === "/webComponent") new WebComponentPage($container);
     if (page === "/observer") new ObserverPage($container);
+    if (page === "/vuex") new VuexPage($container);
   }
 
   setEvent() {
@@ -37,6 +40,10 @@ class App extends Component {
 
     $target.querySelector("#observer").addEventListener("click", () => {
       state.page = "/observer";
+    });
+
+    $target.querySelector("#vuex").addEventListener("click", () => {
+      state.page = "/vuex";
     });
   }
 }
