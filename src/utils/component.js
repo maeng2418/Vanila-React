@@ -1,45 +1,51 @@
+import { observable, observe } from "../store";
+
 class Component {
   #target;
-  #state;
   #props;
+  state;
 
   constructor(target, props) {
     this.#target = target;
     this.#props = props;
     this.setup();
-    this.setEvent();
-    this.render();
   }
 
   get $target() {
     return this.#target;
   }
 
-  get state() {
-    return this.#state;
-  }
-  set state(s) {
-    this.#state = s;
-  }
-
   get props() {
     return this.#props;
   }
 
-  setup() {}
-  mounted() {}
-  template() {
-    return "";
+  setup() {
+    this.state = observable(this.initState()); // state를 관찰한다.
+    observe(() => {
+      // state가 변경될 경우, 함수가 실행된다.
+      this.render();
+      this.setEvent();
+      this.mounted();
+    });
   }
-  setEvent() {}
+
+  initState() {
+    return {};
+  }
+
   setState(newState) {
     this.state = { ...this.state, ...newState };
     this.render();
   }
+  template() {
+    return "";
+  }
   render() {
     this.$target.innerHTML = this.template();
-    this.mounted(); // render 후에 mounted가 실행 된다.
   }
+  mounted() {}
+  setEvent() {}
+
   addEvent(eventType, selector, callback) {
     const children = [...this.$target.querySelectorAll(selector)];
     // selector에 명시한 것 보다 더 하위 요소가 선택되는 경우가 있을 땐
