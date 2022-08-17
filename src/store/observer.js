@@ -1,7 +1,15 @@
 let currentObserver = null;
 
+const debounceFrame = (callback) => {
+  let currentCallback = -1;
+  return () => {
+    cancelAnimationFrame(currentCallback); // 현재 등록된 callback이 있을 경우 취소한다.
+    currentCallback = requestAnimationFrame(callback); // 1프레임 뒤에 실행되도록 한다.
+  };
+};
+
 export const observe = (fn) => {
-  currentObserver = fn;
+  currentObserver = debounceFrame(fn);
   fn();
   currentObserver = null;
 };
