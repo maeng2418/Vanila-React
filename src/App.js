@@ -1,6 +1,7 @@
+import diffAlgorithm from "./pages/diff-algorithm";
 import ObserverPage from "./pages/observer";
 import ReduxPage from "./pages/redux";
-import realDOM from "./pages/virtual-dom";
+import virtualDOM from "./pages/virtual-dom";
 import VuexPage from "./pages/vuex";
 import WebComponentPage from "./pages/web-component";
 import Component from "./utils/component";
@@ -21,6 +22,7 @@ class App extends Component {
       <button id="vuex">Flux 상태관리 시스템 만들기 (Vuex)</button>
       <button id="redux">Flux 상태관리 시스템 만들기 (Redux)</button>
       <button id="virtualDOM">Virtual DOM 만들기</button>
+      <button id="diffAlgorithm">Diff 알고리즘 만들기</button>
       <div id="container"></div>
     `;
   }
@@ -35,7 +37,8 @@ class App extends Component {
     if (page === "/vuex") new VuexPage($container);
     if (page === "/redux") new ReduxPage($container);
 
-    if (page === "/virtualDOM") $container.appendChild(realDOM);
+    if (page === "/virtualDOM") $container.appendChild(virtualDOM);
+    if (page === "/diffAlgorithm") $container.appendChild(diffAlgorithm);
   }
 
   setEvent() {
@@ -59,6 +62,10 @@ class App extends Component {
 
     $target.querySelector("#virtualDOM").addEventListener("click", () => {
       state.page = "/virtualDOM";
+    });
+
+    $target.querySelector("#diffAlgorithm").addEventListener("click", () => {
+      state.page = "/diffAlgorithm";
     });
   }
 }
