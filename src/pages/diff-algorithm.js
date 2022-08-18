@@ -34,7 +34,7 @@ const createElement = (node) => {
 };
 
 /* 모든 태그를 비교하여 변경된 부분에 대해 수정/추가/삭제 */
-export const updateElement = (parent, newNode, oldNode, index = 0) => {
+const updateElement = (parent, newNode, oldNode, index = 0) => {
   // 1. oldNode만 있는 경우
   if (!newNode && oldNode) {
     return parent.removeChild(parent.childNode[index]);
@@ -96,7 +96,7 @@ const updateAttributes = (target, newProps, oldProps) => {
   }
 };
 
-export const render = (state) => (
+const render = (state) => (
   <div id="app">
     <ul>
       {state.map(({ completed, content }) => (
