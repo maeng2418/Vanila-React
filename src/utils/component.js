@@ -1,4 +1,5 @@
 import { observable, observe } from "../store";
+import updateElement from "../utils/real-dom-diff-algorithm";
 
 class Component {
   #target;
@@ -41,7 +42,19 @@ class Component {
     return "";
   }
   render() {
-    this.$target.innerHTML = this.template();
+    // this.$target.innerHTML = this.template();
+
+    // 기존 Node를 복제한 후에 새로운 템플릿을 채워넣는다.
+    const newNode = this.$target.cloneNode(true);
+    newNode.innerHTML = this.template();
+
+    // DIFF알고리즘을 적용한다.
+    const oldChildNodes = [...this.$target.childNodes];
+    const newChildNodes = [...newNode.childNodes];
+    const max = Math.max(oldChildNodes.length, newChildNodes.length);
+    for (let i = 0; i < max; i++) {
+      updateElement(this.$target, newChildNodes[i], oldChildNodes[i]);
+    }
   }
   mounted() {}
   setEvent() {}

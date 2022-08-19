@@ -2,6 +2,7 @@ import diffAlgorithm from "./pages/diff-algorithm";
 import ObserverPage from "./pages/observer";
 import realDOMDiffAlgorithm from "./pages/real-dom-diff-algorithm";
 import ReduxPage from "./pages/redux";
+import VanilaReact from "./pages/vanila-react";
 import virtualDOM from "./pages/virtual-dom";
 import VuexPage from "./pages/vuex";
 import WebComponentPage from "./pages/web-component";
@@ -25,6 +26,7 @@ class App extends Component {
       <button id="virtualDOM">Virtual DOM 만들기</button>
       <button id="diffAlgorithm">Diff 알고리즘 만들기</button>
       <button id="realDOMDiffAlgorithm">Real DOM Diff 알고리즘 만들기</button>
+      <button id="vanilaReact">바닐라 리액트 만들기</button>
       <div id="container"></div>
     `;
   }
@@ -43,6 +45,8 @@ class App extends Component {
     if (page === "/diffAlgorithm") $container.appendChild(diffAlgorithm);
     if (page === "/realDOMDiffAlgorithm")
       $container.appendChild(realDOMDiffAlgorithm);
+
+    if (page === "/vanilaReact") new VanilaReact($container);
   }
 
   setEvent() {
@@ -77,6 +81,10 @@ class App extends Component {
       .addEventListener("click", () => {
         state.page = "/realDOMDiffAlgorithm";
       });
+
+    $target.querySelector("#vanilaReact").addEventListener("click", () => {
+      state.page = "/vanilaReact";
+    });
   }
 }
 
