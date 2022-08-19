@@ -1,12 +1,12 @@
-import diffAlgorithm from "./pages/diff-algorithm";
-import ObserverPage from "./pages/observer";
-import realDOMDiffAlgorithm from "./pages/real-dom-diff-algorithm";
-import ReduxPage from "./pages/redux";
-import VanilaReact from "./pages/vanila-react";
-import virtualDOM from "./pages/virtual-dom";
-import VuexPage from "./pages/vuex";
-import WebComponentPage from "./pages/web-component";
-import Component from "./utils/component";
+import Component from "./core/component";
+import WebComponentPage from "./pages/section1";
+import ObserverPage from "./pages/section2";
+import VuexPage from "./pages/section3";
+import ReduxPage from "./pages/section4";
+import VirtualDOMPage from "./pages/section6";
+import DiffAlgorithm from "./pages/section7";
+import RealDOMDiffAlgorithm from "./pages/section8";
+import VanilaReact from "./pages/section9";
 
 class App extends Component {
   initState() {
@@ -40,12 +40,9 @@ class App extends Component {
     if (page === "/observer") new ObserverPage($container);
     if (page === "/vuex") new VuexPage($container);
     if (page === "/redux") new ReduxPage($container);
-
-    if (page === "/virtualDOM") $container.appendChild(virtualDOM);
-    if (page === "/diffAlgorithm") $container.appendChild(diffAlgorithm);
-    if (page === "/realDOMDiffAlgorithm")
-      $container.appendChild(realDOMDiffAlgorithm);
-
+    if (page === "/virtualDOM") new VirtualDOMPage($container);
+    if (page === "/diffAlgorithm") new DiffAlgorithm($container);
+    if (page === "/realDOMDiffAlgorithm") new RealDOMDiffAlgorithm($container);
     if (page === "/vanilaReact") new VanilaReact($container);
   }
 

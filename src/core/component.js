@@ -1,5 +1,5 @@
-import { observable, observe } from "../store";
-import updateElement from "../utils/real-dom-diff-algorithm";
+import { updateElement } from "./diff-algorithm";
+import { observable, observe } from "./observer";
 
 class Component {
   #target;

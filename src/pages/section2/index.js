@@ -1,7 +1,7 @@
-import { ObserverStore as store } from "../store";
-import Component from "../utils/component";
+import Component from "./component";
+import store from "./store";
 
-class Observer extends Component {
+class ObserverPage extends Component {
   template() {
     const { a, b } = store.state;
     return `
@@ -28,4 +28,4 @@ class Observer extends Component {
   }
 }
 
-export default Observer;
+export default ObserverPage;

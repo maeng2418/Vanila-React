@@ -1,9 +1,9 @@
-import ItemAppender from "../components/item-appender";
-import ItemFilter from "../components/item-filter";
-import Items from "../components/items";
-import Component from "../utils/component";
+import Component from "./component";
+import ItemAppender from "./item-appender";
+import ItemFilter from "./item-filter";
+import Items from "./items";
 
-class WebComponent extends Component {
+class WebComponentPage extends Component {
   setup() {
     this.state = {
       isFilter: 0,
@@ -72,6 +72,7 @@ class WebComponent extends Component {
     const seq = Math.max(0, ...items.map((v) => v.seq)) + 1;
     const active = false;
     this.setState({
+      ...this.state,
       items: [...items, { seq, contents, active }],
     });
   }
@@ -82,19 +83,19 @@ class WebComponent extends Component {
       items.findIndex((v) => v.seq === seq),
       1
     );
-    this.setState({ items });
+    this.setState({ ...this.state, items });
   }
 
   toggleItem(seq) {
     const items = [...this.state.items];
     const index = items.findIndex((v) => v.seq === seq);
     items[index].active = !items[index].active;
-    this.setState({ items });
+    this.setState({ ...this.state, items });
   }
 
   filterItem(isFilter) {
-    this.setState({ isFilter });
+    this.setState({ ...this.state, isFilter });
   }
 }
 
-export default WebComponent;
+export default WebComponentPage;

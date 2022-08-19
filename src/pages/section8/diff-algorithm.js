@@ -1,4 +1,4 @@
-const updateElement = (parent, newNode, oldNode) => {
+export const updateElement = (parent, newNode, oldNode) => {
   // 1. oldNode만 있는 경우
   if (!newNode && oldNode) {
     return oldNode.remove();
@@ -59,5 +59,3 @@ const updateAttributes = (oldNode, newNode) => {
     oldNode.removeAttribute(name);
   }
 };
-
-export default updateElement;

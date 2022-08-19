@@ -1,4 +1,4 @@
-function updateElement(parent, newNode, oldNode) {
+export const updateElement = (parent, newNode, oldNode) => {
   // 1. oldNode만 있는 경우
   if (!newNode && oldNode) {
     return oldNode.remove();
@@ -41,9 +41,9 @@ function updateElement(parent, newNode, oldNode) {
   for (let i = 0; i < maxLength; i++) {
     updateElement(oldNode, newChildren[i], oldChildren[i]);
   }
-}
+};
 
-function updateAttributes(oldNode, newNode) {
+const updateAttributes = (oldNode, newNode) => {
   const oldProps = [...oldNode.attributes];
   const newProps = [...newNode.attributes];
 
@@ -58,57 +58,4 @@ function updateAttributes(oldNode, newNode) {
     if (newNode.getAttribute(name) !== undefined) continue;
     oldNode.removeAttribute(name);
   }
-}
-
-const render = (state) => {
-  const el = document.createElement("div");
-  el.innerHTML = `
-    <div id="app">
-      <ul>
-        ${state
-          .map(
-            ({ completed, content }) => `
-          <li class="${completed ? "completed" : ""}">
-            <input type="checkbox" class="toggle" ${
-              completed ? "checked" : ""
-            } />
-            ${content}
-            <button class="remove">삭제</button>
-          </li>
-        `
-          )
-          .join("")}
-      </ul>
-      <form>
-        <input type="text" />
-        <button type="submit">추가</button>
-      </form>
-    </div>
-  `.trim();
-
-  return el.firstChild;
 };
-
-const $root = document.createElement("div");
-
-// 이전 상태
-const oldState = [
-  { id: 1, completed: false, content: "todo list item 1" },
-  { id: 2, completed: true, content: "todo list item 2" },
-];
-
-// 업데이트 상태
-const newState = [
-  { id: 1, completed: true, content: "todo list item 1 update" },
-  { id: 2, completed: true, content: "todo list item 2" },
-  { id: 3, completed: false, content: "todo list item 3" },
-];
-
-const oldNode = render(oldState);
-const newNode = render(newState);
-
-updateElement($root, oldNode);
-
-setTimeout(() => updateElement($root, newNode, oldNode), 5000); // 1초 뒤에 DOM 변경
-
-export default $root;

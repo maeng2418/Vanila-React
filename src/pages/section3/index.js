@@ -1,27 +1,7 @@
-import { Vuex as VuexStore } from "../store";
-import Component from "../utils/component";
+import Component from "./component";
+import store from "./store";
 
-const store = new VuexStore({
-  state: {
-    a: 10,
-    b: 20,
-  },
-
-  // state의 값은 오직 mutations를 통해서 변경할 수 있다.
-  mutations: {
-    SET_A(state, payload) {
-      state.a = payload;
-    },
-
-    SET_B(state, payload) {
-      state.b = payload;
-    },
-  },
-
-  // actions도 있으면 좋겠지만.. 딱히 지금 쓸만한 API가 없다.
-});
-
-class Vuex extends Component {
+class VuexPage extends Component {
   template() {
     const { a, b } = store.state;
     return `
@@ -48,4 +28,4 @@ class Vuex extends Component {
   }
 }
 
-export default Vuex;
+export default VuexPage;

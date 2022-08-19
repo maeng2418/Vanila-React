@@ -1,6 +1,6 @@
 import { observable } from "./observer.js";
 
-const createStore = (reducer) => {
+export const createStore = (reducer) => {
   // reducer가 실행될 때 반환하는 객체(state)를 observable로 만들어야 한다.
   const state = observable(reducer());
 

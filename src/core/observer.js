@@ -1,5 +1,6 @@
 let currentObserver = null;
 
+// 상태가 연속으로 변경되는 경우 한번만 렌더링 되도록 디바운스 설정
 const debounceFrame = (callback) => {
   let currentCallback = -1;
   return () => {

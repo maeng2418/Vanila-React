@@ -1,4 +1,4 @@
-import Component from "../utils/component";
+import Component from "./component";
 
 class ItemAppender extends Component {
   template() {
